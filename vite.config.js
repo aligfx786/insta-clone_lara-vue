@@ -18,7 +18,7 @@ export default defineConfig({
             },
         }),
     ],
-    server: {
+   server: {
         hmr: {
             host: "insta-clone.ddev.site", // Use your DDEV hostname
             protocol: "wss",
