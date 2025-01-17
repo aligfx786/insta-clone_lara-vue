@@ -33,13 +33,19 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Set the default file path
+        $data['file'] = $request->file('file')
+            ? $request->file(key: 'file')->store('uploads', 'public') // Store uploaded file
+            : '/user-placeholder.png'; // Default file path
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'file' => $data['file'], // Include the file field
             'password' => Hash::make($request->password),
         ]);
 
