@@ -18,7 +18,7 @@ export default defineConfig({
             },
         }),
     ],
-   server: {
+    server: {
         hmr: {
             host: "insta-clone.ddev.site", // Use your DDEV hostname
             protocol: "wss",
@@ -26,5 +26,8 @@ export default defineConfig({
         host: "0.0.0.0", // Expose to all network interfaces
         port: 5173, // Ensure port matches DDEV config
         cors: true, // Enable CORS for development
+    },
+    build: {
+        outDir: "dist",
     },
 });
